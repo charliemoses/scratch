@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>scratch pad</title>
+  </head>
+  <body>
+    <canvas id="grid" width="400" height="400" style="border:1px solid #000000;"></canvas>
+
+    <script>
+      var gridElement = document.getElementById('grid');
+      var grid = gridElement.getContext("2d");
+      var w = 10; var h = 10;
+      var xUnit = gridElement.width / w;
+      var yUnit = gridElement.height / h;
+      var g = Array(w * h).fill(0);
+      g.cell = function(x, y) { return g[x + y * w] };
+      g.setCell = function (x, y, v) { g[x + y * w] = v; };
+      var draw = function() {
+        for (x = 0; x < w; x++) {
+          for (y = 0; y < h; y++) {
+            if (g.cell(x, y)) { grid.fillRect(x * xUnit, y * yUnit, xUnit, yUnit); }
+          }
+        }
+      };      
+    </script>
+  </body>
